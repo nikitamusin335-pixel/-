@@ -1,0 +1,7 @@
+services:
+ollama:
+  image: ollama/ollama:latest
+chat:
+data:
+
+
