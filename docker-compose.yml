@@ -1,7 +1,33 @@
 services:
-ollama:
-  image: ollama/ollama:latest
-chat:
-data:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: web_ai_data_agent_ollama
+    restart: unless-stopped
+    ports:
+      - "11437:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0
 
+  data_agent:
+    build:
+      context: ./data_agent
+      dockerfile: Dockerfile
+    container_name: web_ai_data_agent_web
+    restart: unless-stopped
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_URL=http://ollama:11434/api/chat
+      - MODEL_NAME=gemma3:4b
+      - STORAGE_DIR=/app/storage
+      - MAX_UPLOAD_MB=200
+    volumes:
+      - data_agent_storage:/app/storage
+    ports:
+      - "8112:8004"
 
+volumes:
+  ollama_data:
+  data_agent_storage:
