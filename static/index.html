@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Logo Generator | Создайте логотип для бизнеса</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✨ AI Logo Studio</h1>
+            <p>Создайте уникальный логотип для вашего бизнеса с помощью искусственного интеллекта</p>
+        </header>
+
+        <div class="main-grid">
+            <!-- Форма ввода -->
+            <div class="form-card">
+                <h2>Информация о бизнесе</h2>
+                
+                <div class="form-group">
+                    <label>Название компании *</label>
+                    <input type="text" id="business-name" placeholder="Например: TechVision, EcoLife, ArtSpace" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Индустрия *</label>
+                    <select id="industry">
+                        <option value="tech">💻 Технологии & IT</option>
+                        <option value="finance">💰 Финансы & Инвестиции</option>
+                        <option value="food">🍔 Еда & Рестораны</option>
+                        <option value="fashion">👗 Мода & Стиль</option>
+                        <option value="health">🏥 Здоровье & Фитнес</option>
+                        <option value="education">📚 Образование</option>
+                        <option value="real_estate">🏠 Недвижимость</option>
+                        <option value="art">🎨 Искусство & Дизайн</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Стиль логотипа *</label>
+                    <div class="style-grid" id="style-grid">
+                        <!-- Стили будут загружены динамически -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Слоган (опционально)</label>
+                    <input type="text" id="slogan" placeholder="Короткий слоган компании">
+                </div>
+
+                <div class="form-group">
+                    <label>Дополнительная информация</label>
+                    <textarea id="additional-info" rows="3" placeholder="Ценности компании, целевая аудитория, предпочтения по цвету..."></textarea>
+                </div>
+
+                <button id="generate-btn" class="btn-primary">🚀 Сгенерировать логотип</button>
+            </div>
+
+            <!-- Результат -->
+            <div class="result-card">
+                <h2>Ваш логотип</h2>
+                <div id="logo-container" class="logo-container">
+                    <div class="placeholder">
+                        <svg width="200" height="200" viewBox="0 0 200 200">
+                            <rect width="200" height="200" fill="#f0f0f0" rx="10"/>
+                            <text x="100" y="100" text-anchor="middle" fill="#999" font-size="14">Здесь будет ваш логотип</text>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div id="logo-info" class="logo-info">
+                    <p id="logo-description"></p>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="download-btn" class="btn-secondary" disabled>💾 Скачать SVG</button>
+                    <button id="refine-btn" class="btn-outline" disabled>✏️ Доработать</button>
+                </div>
+
+                <div id="refine-section" class="refine-section hidden">
+                    <textarea id="feedback-input" rows="2" placeholder="Что изменить? Например: сделай цвета ярче, добавь элемент...</textarea>
+                    <button id="submit-refine-btn" class="btn-primary small">Применить изменения</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Загрузка -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Генерация логотипа... Это может занять 30-60 секунд</p>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

@@ -1,10 +1,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from pathlib import Path
 
 from routes import router
 
-app = FastAPI(title="Web AI Data Agent")
+# Создаем директории
+STATIC_DIR = Path("static")
+STATIC_DIR.mkdir(exist_ok=True)
+
+app = FastAPI(title="AI Logo Generator - Бизнес-логотипы")
 
 app.add_middleware(
     CORSMiddleware,
@@ -17,8 +22,6 @@ app.add_middleware(
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.include_router(router)
 
-
 if __name__ == "__main__":
     import uvicorn
-
-    uvicorn.run(app, host="0.0.0.0", port=8004)
+    uvicorn.run(app, host="0.0.0.0", port=8005)
